@@ -1,19 +1,18 @@
 %include	/usr/lib/rpm/macros.gstreamer
 
 %define		gstname		gst-plugins-good
-%define		gst_major_ver	0.10
-%define		gst_req_ver	0.10.35
-%define		gstpb_req_ver	0.10.35
+%define		gst_major_ver	1.0
+%define		gst_req_ver	1.0.2
+%define		gstpb_req_ver	1.0.2
 
 Summary:	Good GStreamer Streaming-media framework plugins
 Name:		gstreamer-plugins-good
-Version:	0.10.31
-Release:	2
+Version:	1.0.2
+Release:	1
 License:	LGPL
 Group:		Libraries
 Source0:	http://gstreamer.freedesktop.org/src/gst-plugins-good/%{gstname}-%{version}.tar.xz
-# Source0-md5:	555845ceab722e517040bab57f9ace95
-Patch0:		%{name}-compile-fix.patch
+# Source0-md5:	13e487127d80fe20c868b3bbb2a17d9e
 URL:		http://gstreamer.freedesktop.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -26,10 +25,10 @@ BuildRequires:	libtool
 BuildRequires:	orc-devel >= 0.4.5
 BuildRequires:	pkg-config
 #
-BuildRequires:	GConf-devel
-BuildRequires:	cairo-devel
-BuildRequires:	dbus-devel
+BuildRequires:	bzip2-devel
 BuildRequires:	flac-devel
+BuildRequires:	gdk-pixbuf-devel
+BuildRequires:	glib-gio-devel
 BuildRequires:	jack-audio-connection-kit-devel
 BuildRequires:	ladspa-devel
 BuildRequires:	libavc1394-devel
@@ -38,7 +37,9 @@ BuildRequires:	libiec61883-devel
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libraw1394-devel
+BuildRequires:	libsoup-gnome-devel
 BuildRequires:	libstdc++-devel
+BuildRequires:	libvpx-devel
 BuildRequires:	libxml2-devel
 BuildRequires:	pulseaudio-devel
 BuildRequires:	rpm-gstreamerprov
@@ -49,7 +50,6 @@ BuildRequires:	xorg-libXdamage-devel
 BuildRequires:	xorg-libXext-devel
 BuildRequires:	xorg-libXfixes-devel
 BuildRequires:	zlib-devel
-Requires(post,preun):	GConf
 Requires:	gstreamer >= %{gst_req_ver}
 Requires:	gstreamer-plugins-base >= %{gstpb_req_ver}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -74,8 +74,7 @@ Requires:	gtk-doc-common
 gstreamer-plugins-good API documentation.
 
 %prep
-%setup -q -n %{gstname}-%{version}
-%patch0 -p1
+%setup -qn %{gstname}-%{version}
 
 %build
 %{__autopoint}
@@ -114,37 +113,30 @@ rm -f $RPM_BUILD_ROOT%{gstlibdir}/*.la
 rm -rf $RPM_BUILD_ROOT
 
 %post
-%gconf_schema_install gstreamer-0.10.schemas
 
 %preun
-%gconf_schema_uninstall gstreamer-0.10.schemas
 
 %%files -f %{gstname}-%{gst_major_ver}.lang
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README RELEASE
-
 %attr(755,root,root) %{gstlibdir}/libgst1394.so
 %attr(755,root,root) %{gstlibdir}/libgstalaw.so
 %attr(755,root,root) %{gstlibdir}/libgstalpha.so
 %attr(755,root,root) %{gstlibdir}/libgstalphacolor.so
-%attr(755,root,root) %{gstlibdir}/libgstannodex.so
 %attr(755,root,root) %{gstlibdir}/libgstapetag.so
 %attr(755,root,root) %{gstlibdir}/libgstaudiofx.so
 %attr(755,root,root) %{gstlibdir}/libgstaudioparsers.so
 %attr(755,root,root) %{gstlibdir}/libgstauparse.so
 %attr(755,root,root) %{gstlibdir}/libgstautodetect.so
 %attr(755,root,root) %{gstlibdir}/libgstavi.so
-%attr(755,root,root) %{gstlibdir}/libgstcairo.so
 %attr(755,root,root) %{gstlibdir}/libgstcutter.so
 %attr(755,root,root) %{gstlibdir}/libgstdebug.so
 %attr(755,root,root) %{gstlibdir}/libgstdeinterlace.so
-%attr(755,root,root) %{gstlibdir}/libgstefence.so
 %attr(755,root,root) %{gstlibdir}/libgsteffectv.so
 %attr(755,root,root) %{gstlibdir}/libgstequalizer.so
 %attr(755,root,root) %{gstlibdir}/libgstflac.so
 %attr(755,root,root) %{gstlibdir}/libgstflv.so
 %attr(755,root,root) %{gstlibdir}/libgstflxdec.so
-%attr(755,root,root) %{gstlibdir}/libgstgconfelements.so
 %attr(755,root,root) %{gstlibdir}/libgstgdkpixbuf.so
 %attr(755,root,root) %{gstlibdir}/libgstgoom.so
 %attr(755,root,root) %{gstlibdir}/libgstgoom2k1.so
@@ -180,13 +172,12 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{gstlibdir}/libgstvideocrop.so
 %attr(755,root,root) %{gstlibdir}/libgstvideofilter.so
 %attr(755,root,root) %{gstlibdir}/libgstvideomixer.so
+%attr(755,root,root) %{gstlibdir}/libgstvpx.so
 %attr(755,root,root) %{gstlibdir}/libgstwavenc.so
 %attr(755,root,root) %{gstlibdir}/libgstwavparse.so
 %attr(755,root,root) %{gstlibdir}/libgstximagesrc.so
 %attr(755,root,root) %{gstlibdir}/libgsty4menc.so
-
 %{gstdatadir}/presets/*.prs
-%{_sysconfdir}/gconf/schemas/gstreamer-0.10.schemas
 
 %if 0
 %files apidocs
