@@ -2,17 +2,17 @@
 
 %define		gstname		gst-plugins-good
 %define		gst_major_ver	1.0
-%define		gst_req_ver	1.0.4
-%define		gstpb_req_ver	1.0.4
+%define		gst_req_ver	1.0.5
+%define		gstpb_req_ver	1.0.5
 
 Summary:	Good GStreamer Streaming-media framework plugins
 Name:		gstreamer-plugins-good
-Version:	1.0.4
+Version:	1.0.5
 Release:	1
 License:	LGPL
 Group:		Libraries
 Source0:	http://gstreamer.freedesktop.org/src/gst-plugins-good/%{gstname}-%{version}.tar.xz
-# Source0-md5:	7a3f76b68cadafd1588af36f5f261bb8
+# Source0-md5:	e1d451b8b198ab50f645635c1fc8a3cb
 URL:		http://gstreamer.freedesktop.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -129,6 +129,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{gstlibdir}/libgstauparse.so
 %attr(755,root,root) %{gstlibdir}/libgstautodetect.so
 %attr(755,root,root) %{gstlibdir}/libgstavi.so
+%attr(755,root,root) %{gstlibdir}/libgstcairo.so
 %attr(755,root,root) %{gstlibdir}/libgstcutter.so
 %attr(755,root,root) %{gstlibdir}/libgstdebug.so
 %attr(755,root,root) %{gstlibdir}/libgstdeinterlace.so
