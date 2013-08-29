@@ -2,17 +2,17 @@
 
 %define		gstname		gst-plugins-good
 %define		gst_major_ver	1.0
-%define		gst_req_ver	1.0.8
-%define		gstpb_req_ver	1.0.8
+%define		gst_req_ver	1.0.10
+%define		gstpb_req_ver	1.0.10
 
 Summary:	Good GStreamer Streaming-media framework plugins
 Name:		gstreamer-plugins-good
-Version:	1.0.8
+Version:	1.0.10
 Release:	1
 License:	LGPL
 Group:		Libraries
 Source0:	http://gstreamer.freedesktop.org/src/gst-plugins-good/%{gstname}-%{version}.tar.xz
-# Source0-md5:	4969826043bbd3f76e4a0d49ea475736
+# Source0-md5:	6576c133d4a0faa904087e5d1b32ccc5
 URL:		http://gstreamer.freedesktop.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
