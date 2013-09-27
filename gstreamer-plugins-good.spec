@@ -2,17 +2,17 @@
 
 %define		gstname		gst-plugins-good
 %define		gst_major_ver	1.0
-%define		gst_req_ver	1.0.10
-%define		gstpb_req_ver	1.0.10
+%define		gst_req_ver	1.2.0
+%define		gstpb_req_ver	1.2.0
 
 Summary:	Good GStreamer Streaming-media framework plugins
 Name:		gstreamer-plugins-good
-Version:	1.0.10
+Version:	1.2.0
 Release:	1
 License:	LGPL
 Group:		Libraries
 Source0:	http://gstreamer.freedesktop.org/src/gst-plugins-good/%{gstname}-%{version}.tar.xz
-# Source0-md5:	6576c133d4a0faa904087e5d1b32ccc5
+# Source0-md5:	df96825d4154940fd934aa0a95b40836
 URL:		http://gstreamer.freedesktop.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -20,7 +20,6 @@ BuildRequires:	glib-devel
 BuildRequires:	gstreamer-devel >= %{gst_req_ver}
 BuildRequires:	gstreamer-plugins-base-devel >= %{gstpb_req_ver}
 BuildRequires:	gtk-doc
-BuildRequires:	gtk+-devel
 BuildRequires:	libtool
 BuildRequires:	orc-devel >= 0.4.5
 BuildRequires:	pkg-config
@@ -87,7 +86,6 @@ gstreamer-plugins-good API documentation.
 %configure \
 	ac_cv_lib_jpeg_mmx_jpeg_set_defaults=no	\
 	--disable-aalib				\
-	--disable-esd				\
 	--disable-examples			\
 	--disable-libcaca			\
 	--disable-oss				\
@@ -133,6 +131,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{gstlibdir}/libgstcutter.so
 %attr(755,root,root) %{gstlibdir}/libgstdebug.so
 %attr(755,root,root) %{gstlibdir}/libgstdeinterlace.so
+%attr(755,root,root) %{gstlibdir}/libgstdtmf.so
 %attr(755,root,root) %{gstlibdir}/libgsteffectv.so
 %attr(755,root,root) %{gstlibdir}/libgstequalizer.so
 %attr(755,root,root) %{gstlibdir}/libgstflac.so
