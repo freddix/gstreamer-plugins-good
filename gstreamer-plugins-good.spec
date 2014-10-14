@@ -8,7 +8,7 @@
 Summary:	Good GStreamer Streaming-media framework plugins
 Name:		gstreamer-plugins-good
 Version:	1.4.3
-Release:	1
+Release:	2
 License:	LGPL
 Group:		Libraries
 Source0:	http://gstreamer.freedesktop.org/src/gst-plugins-good/%{gstname}-%{version}.tar.xz
@@ -45,6 +45,7 @@ BuildRequires:	rpm-gstreamerprov
 BuildRequires:	speex-devel
 BuildRequires:	taglib-devel
 BuildRequires:	v4l-utils-devel
+BuildRequires:	wavpack-devel
 BuildRequires:	xorg-libX11-devel
 BuildRequires:	xorg-libXdamage-devel
 BuildRequires:	xorg-libXext-devel
@@ -94,7 +95,9 @@ gstreamer-plugins-good API documentation.
 	--disable-silent-rules			\
 	--disable-static			\
 	--enable-experimental			\
-	--with-html-dir=%{_gtkdocdir}
+	--with-html-dir=%{_gtkdocdir}		\
+	--with-package-name="GStreamer (Freddix)"   \
+	--with-package-origin="http://freddix.org/"
 %{__make}
 
 %install
@@ -175,6 +178,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{gstlibdir}/libgstvideomixer.so
 %attr(755,root,root) %{gstlibdir}/libgstvpx.so
 %attr(755,root,root) %{gstlibdir}/libgstwavenc.so
+%attr(755,root,root) %{gstlibdir}/libgstwavpack.so
 %attr(755,root,root) %{gstlibdir}/libgstwavparse.so
 %attr(755,root,root) %{gstlibdir}/libgstximagesrc.so
 %attr(755,root,root) %{gstlibdir}/libgsty4menc.so
