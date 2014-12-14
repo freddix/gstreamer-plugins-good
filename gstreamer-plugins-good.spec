@@ -2,17 +2,17 @@
 
 %define		gstname		gst-plugins-good
 %define		gst_major_ver	1.0
-%define		gst_req_ver	1.4.3
-%define		gstpb_req_ver	1.4.3
+%define		gst_req_ver	1.4.4
+%define		gstpb_req_ver	1.4.4
 
 Summary:	Good GStreamer Streaming-media framework plugins
 Name:		gstreamer-plugins-good
-Version:	1.4.3
-Release:	2
+Version:	1.4.4
+Release:	1
 License:	LGPL
 Group:		Libraries
 Source0:	http://gstreamer.freedesktop.org/src/gst-plugins-good/%{gstname}-%{version}.tar.xz
-# Source0-md5:	534ca03c00361d940008d36ac5c45966
+# Source0-md5:	673cf9276952bd3937dafd817c9ead2b
 URL:		http://gstreamer.freedesktop.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -40,7 +40,7 @@ BuildRequires:	libsoup-gnome-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	libvpx-devel
 BuildRequires:	libxml2-devel
-BuildRequires:	pulseaudio-devel
+#BuildRequires:	pulseaudio-devel
 BuildRequires:	rpm-gstreamerprov
 BuildRequires:	speex-devel
 BuildRequires:	taglib-devel
@@ -159,7 +159,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{gstlibdir}/libgstmultipart.so
 %attr(755,root,root) %{gstlibdir}/libgstnavigationtest.so
 %attr(755,root,root) %{gstlibdir}/libgstpng.so
-%attr(755,root,root) %{gstlibdir}/libgstpulse.so
+#%attr(755,root,root) %{gstlibdir}/libgstpulse.so
 %attr(755,root,root) %{gstlibdir}/libgstreplaygain.so
 %attr(755,root,root) %{gstlibdir}/libgstrtp.so
 %attr(755,root,root) %{gstlibdir}/libgstrtpmanager.so
